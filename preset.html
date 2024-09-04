@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unicórnios e Sparkles</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace; /* Usar fonte monoespaçada para o ASCII */
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        /* Unicórnios em ASCII rosa */
+        .ascii-unicorn {
+            color: #ff69b4; /* Cor rosa pink */
+            font-size: 12px;
+            white-space: pre;
+            text-align: center;
+            display: block;
+            margin-top: 50px;
+        }
+
+        /* Sparkles em forma de estrela rosa pink */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            width: 20px;
+            height: 20px;
+            background-image: url('https://img.icons8.com/emoji/48/FF69B4/sparkles.png'); /* Ícone de estrela rosa */
+            background-size: contain;
+            background-repeat: no-repeat;
+            animation: sparkleFade 1s linear;
+        }
+
+        @keyframes sparkleFade {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* Emoji que aparece ao clicar */
+        .emoji {
+            position: absolute;
+            font-size: 40px;
+            pointer-events: none;
+            animation: emojiFade 2s forwards;
+        }
+
+        @keyframes emojiFade {
+            0% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-50px); /* Sobe antes de desaparecer */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ascii-unicorn">
+        <pre>
+               \
+                \\
+                 \%,     ,'     , ,.
+                  \%\,';/J,";";";;,,.
+     ~.------------\%;((`);)));`;;,.,-----------,~
+    ~~:           ,`;@)((;`,`((;(;;);;,`         :~~
+   ~~ :           ;`(@```))`~ ``; );(;));;,      : ~~
+  ~~  :            `X `(( `),    (;;);;;;`       :  ~~
+ ~~~~ :            / `) `` /;~   `;;;;;;;);,     :  ~~~~
+~~~~  :           / , ` ,/` /     (`;;(;;;;,     : ~~~~
+  ~~~ :          (o  /]_/` /     ,);;;`;;;;;`,,  : ~~~
+   ~~ :           `~` `~`  `      ``;,  ``;" ';, : ~~
+    ~~:                             `'   `'  `'  :~~
+     ~`-----------------------------------------`~
+
+              ,,))))))));,
+           __)))))))))))))),
+\|/       -\(((((''''((((((((.
+-*-==//////((''  .     `)))))),
+/|\      ))| o    ;-.    '(((((                                  ,(,
+         ( `|    /  )    ;))))'                               ,_))^;(~
+            |   |   |   ,))((((_     _____------~~~-.        %,;(;(>';'~
+            o_);   ;    )))(((` ~---~  `::           \      %%~~)(v;(`('~
+                  ;    ''''````         `:       `:::|\,__,%%    );`'; ~
+                 |   _                )     /      `:|`----'     `-'
+           ______/\/~    |                 /        /
+         /~;;.____/;;'  /          ___--,-(   `;;;/
+        / //  _;______;'------~~~~~    /;;/\    /
+       //  | |                        / ;   \;;,\
+      (<_  | ;                      /',/-----'  _>
+       \_| ||_                     //~;~~~~~~~~~
+           `\_|                   (,~~  -
+                                   \~\
+                                    ~~
+        </pre>
+    </div>
+
+    <script>
+        // Função para gerar um número aleatório entre dois valores
+        function randomBetween(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+
+        // Efeito de sparkles com o mouse
+        document.body.addEventListener('mousemove', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+            document.body.appendChild(sparkle);
+
+            // Posiciona a estrelinha no local do mouse
+            sparkle.style.left = `${e.pageX - 10}px`; // Centraliza o sparkle em relação ao mouse
+            sparkle.style.top = `${e.pageY - 10}px`;
+
+            // Remove a estrelinha depois de 1 segundo
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000);
+        });
+
+        // Exibir emojis de mundo e símbolo de paz ao clicar
+        document.body.addEventListener('click', function(e) {
+            const emojiMundo = document.createElement('div');
+            emojiMundo.classList.add('emoji');
+            emojiMundo.textContent = '🌍'; // Emoji de mundo
+            document.body.appendChild(emojiMundo);
+
+            const emojiPaz = document.createElement('div');
+            emojiPaz.classList.add('emoji');
+            emojiPaz.textContent = '☮️'; // Símbolo de paz e amor
+            document.body.appendChild(emojiPaz);
+
+            // Posiciona os emojis no local do clique
+            emojiMundo.style.left = `${e.pageX - 20}px`;
+            emojiMundo.style.top = `${e.pageY - 20}px`;
+
+            emojiPaz.style.left = `${e.pageX + 20}px`;
+            emojiPaz.style.top = `${e.pageY - 20}px`;
+
+            // Remove os emojis depois de 2 segundos
+            setTimeout(() => {
+                emojiMundo.remove();
+                emojiPaz.remove();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
